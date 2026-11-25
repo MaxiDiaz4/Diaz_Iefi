@@ -1,11 +1,10 @@
 {
-  "name": "apex-fit",
+  "name": "tp3",
   "version": "1.0.0",
-  "description": "Apex Fit - Tienda de suplementos deportivos. Proyecto final de Aplicaciones Web I.",
-  "type": "module",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "five-server",
-    "test": "node --test"
+    "dev": "five-server"
   },
   "keywords": [],
   "author": "",

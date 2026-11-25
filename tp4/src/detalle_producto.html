@@ -26,12 +26,11 @@
                 </a>
                 <a href="./carrito.html" aria-label="Ir al carrito de compras">
                     <img src="./recursos/imagenes/elementos/logo_carrito_blanco.webp" alt="Logo de carrito">
-                    <span id="contador-carrito" class="contador-carrito" hidden>0</span>
                 </a>
             </div>
 
             <!-- 4. Buscador (Pasará a la segunda línea) -->
-            <form role="search" action="./catalogo.html" method="get" class="barra-busqueda">
+            <form role="search" action="#" method="get" class="barra-busqueda">
                 <div>
                     <label for="id_buscar" hidden>Buscar productos</label>
                     <input type="search" id="id_buscar" name="busqueda" placeholder="¿Qué estás buscando?">
@@ -49,7 +48,19 @@
         </header>
 
         <main class="contenido-principal" id="contenedor-detalle">
-            <p>Cargando producto...</p>
+            <section>
+                <h3>Productos relacionados</h3>
+                <article class="tarjeta-producto">
+                    <figure>
+                        <a href="./detalle_producto.html"><img src="./recursos/imagenes/productos/suplementos/creatina.webp" alt="Creatina Monohidratada" height="200"></a>
+                    </figure>
+                    <div>
+                        <h4>Creatina Monohidratada</h4>
+                        <p><strong>$38.000</strong></p>
+                        <a href="./detalle_producto.html">Ver producto</a>
+                    </div>
+                </article>
+            </section>
         </main>
 
         <footer class="contenido-pie-pagina">

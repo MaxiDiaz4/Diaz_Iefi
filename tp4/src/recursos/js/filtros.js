@@ -1,46 +1,37 @@
 // ---------- Módulo de filtros ----------
-// Responsabilidad: filtrar, ordenar y calcular precios de los productos.
-// Funciones "puras": reciben datos y devuelven un resultado, sin tocar el DOM.
-// Por eso se pueden probar con el test runner nativo de Node (carpeta tests/).
+// Responsabilidad: filtrar, ordenar y buscar productos (no toca el DOM).
 
-// Calcula el precio final aplicando el descuento (ej: 0.2 = 20% OFF)
-const calcularPrecioFinal = (producto) => {
-    return Math.round(producto.precio - (producto.precio * producto.descuento));
+import { productos } from './productos.js';
+
+//Función de filtrado por categoría
+const filtrarPorCategoria = (categoriaSeleccionada) => {
+    if (categoriaSeleccionada === "Todas") {
+        return productos.filter(prod => prod.categoria !== "Ofertas"); // Devuelve todos excepto los de la categoría "Ofertas"
+    }
+    // Filtra el array original según la categoría
+    return productos.filter(prod => prod.categoria === categoriaSeleccionada);
 };
 
-// Filtra por categoría y por texto de búsqueda al mismo tiempo
-const filtrarProductos = (productos, categoria, texto) => {
-    const textoBuscado = texto.trim().toLowerCase();
-
-    return productos.filter(producto => {
-        const coincideCategoria = categoria === "Todas" || producto.categoria === categoria;
-        const coincideTexto = textoBuscado === ""
-            || producto.nombre.toLowerCase().includes(textoBuscado)
-            || producto.marca.toLowerCase().includes(textoBuscado)
-            || producto.sabor.toLowerCase().includes(textoBuscado);
-
-        return coincideCategoria && coincideTexto;
-    });
-};
-
-// Ordena una copia del arreglo (no modifica el original)
-const ordenarProductos = (criterio, productos) => {
-    const copia = [...productos];
+//Función de ordenamiento
+const ordenarProductos = (criterio, arregloA1Ordenar) => {
+    // Hacemos una copia del array para no modificar el original
+    const arregloCopia = [...arregloA1Ordenar];
 
     if (criterio === "precio-bajo") {
-        return copia.sort((a, b) => calcularPrecioFinal(a) - calcularPrecioFinal(b));
+        return arregloCopia.sort((a, b) => a.precio - b.precio);
     } else if (criterio === "precio-alto") {
-        return copia.sort((a, b) => calcularPrecioFinal(b) - calcularPrecioFinal(a));
+        return arregloCopia.sort((a, b) => b.precio - a.precio);
     } else if (criterio === "nombre") {
-        return copia.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        return arregloCopia.sort((a, b) => a.nombre.localeCompare(b.nombre));
     }
-
-    return copia; // "relevancia": orden original del JSON
+    
+    return arregloCopia; // Si es "relevancia" u otro, devuelve el orden por defecto
 };
 
-// Busca un producto por su id
-const obtenerProductoPorId = (id, productos) => {
-    return productos.find(producto => producto.id === id);
+//  Funciones para cargar el detalle del producto (detalle_producto.html)
+// Función para buscar un producto por ID
+const obtenerProductoPorId = (id, arregloProductos) => {
+    return arregloProductos.find(producto => producto.id === id);
 };
 
-export { calcularPrecioFinal, filtrarProductos, ordenarProductos, obtenerProductoPorId };
+export { filtrarPorCategoria, ordenarProductos, obtenerProductoPorId };

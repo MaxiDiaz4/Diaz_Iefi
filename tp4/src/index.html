@@ -26,12 +26,11 @@
                 </a>
                 <a href="./carrito.html" aria-label="Ir al carrito de compras">
                     <img src="./recursos/imagenes/elementos/logo_carrito_blanco.webp" alt="Logo de carrito">
-                    <span id="contador-carrito" class="contador-carrito" hidden>0</span>
                 </a>
             </div>
 
             <!-- 4. Buscador (Pasará a la segunda línea) -->
-            <form role="search" action="./catalogo.html" method="get" class="barra-busqueda">
+            <form role="search" action="#" method="get" class="barra-busqueda">
                 <div>
                     <label for="id_buscar" hidden>Buscar productos</label>
                     <input type="search" id="id_buscar" name="busqueda" placeholder="¿Qué estás buscando?">
@@ -56,16 +55,48 @@
                 <p>Descubre nuestra amplia gama de suplementos deportivos, productos de nutrición y consejos de entrenamiento para maximizar tu rendimiento.</p>
             </section>
             <h2>Productos destacados</h2>
-            <section id="contenedor-destacados" class="grilla-productos">
-                <p>Cargando productos...</p>
+            <section class="grilla-productos">
+                <article class="tarjeta-producto">
+                    <figure>
+                        <a href="./detalle_producto.html?id=4"><img src="./recursos/imagenes/productos/suplementos/creatina.webp" alt="Creatina monohidratada"></a>
+                    </figure>
+                    <div>
+                        <h3>Creatine & Whey Protein - Star Nutrition</h3>
+                        <p><strong>$49.999</strong></p>
+                        <p>CREATINE & WHEY PROTEIN 910G: Creatina con proteina marca Star Nutrition</p>
+                        <a href="./detalle_producto.html?id=4" class="boton-principal">Ver producto</a>
+                    </div>
+                </article>
+                <article class="tarjeta-producto">
+                    <figure>
+                        <a href="./detalle_producto.html?id=1"><img src="./recursos/imagenes/productos/suplementos/whey_protein_ena.webp" alt="Proteina en polvo"></a>
+                    </figure>
+                    <div>
+                        <h3>Whey Protein - ENA</h3>
+                        <p><strong>$99.999</strong></p>
+                        <p>WHEY PROTEIN 1KG: Proteina en polvo marca Ena, sabor a chocolate.</p>
+                        <a href="./detalle_producto.html?id=1" class="boton-principal">Ver producto</a>
+                    </div>
+                </article>
+                <article class="tarjeta-producto">
+                    <figure>
+                        <a href="./detalle_producto.html?id=3"><img src="./recursos/imagenes/productos/suplementos/colageno_ena.webp" alt="Colágeno - ENA"></a>
+                    </figure>
+                    <div>
+                        <h3>Colágeno - ENA</h3>
+                        <p><strong>$29.999</strong></p>
+                        <p>COLAGENO 400G: Colágeno marca Ena, sabor a naranja.</p>
+                        <a href="./detalle_producto.html?id=3" class="boton-principal">Ver producto</a>
+                    </div>
+                </article>
             </section>
-            <h2>Nuestros beneficios</h2>
+            <h2>Nuestro beneficios</h2>
             <section class="seccion-beneficios">
                 <ul class="lista-beneficios">
                     <li class="tarjeta-beneficio">
                         <img src= "./recursos/imagenes/elementos/logo_camioneta.webp" alt="Envios a todo el país" width="40">
                         <h3>Envíos a todo el país</h3>
-                        <p>Envíos gratis en compras superiores a $50.000</p>
+                    <p>Enviós gratis en compras superiores a $50.000</p>
                     </li>
                             
                     <li class="tarjeta-beneficio">
