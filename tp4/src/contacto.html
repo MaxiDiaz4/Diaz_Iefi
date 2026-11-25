@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Apex Fit - Contacto</title>
         <link rel="stylesheet" href="./recursos/estilos/base.css">
+        <script type="module" src="./recursos/js/index.js"></script>
     </head>
 
     <body>
@@ -25,11 +26,12 @@
                 </a>
                 <a href="./carrito.html" aria-label="Ir al carrito de compras">
                     <img src="./recursos/imagenes/elementos/logo_carrito_blanco.webp" alt="Logo de carrito">
+                    <span id="contador-carrito" class="contador-carrito" hidden>0</span>
                 </a>
             </div>
 
             <!-- 4. Buscador Pasará a la segunda línea -->
-            <form role="search" action="#" method="get" class="barra-busqueda">
+            <form role="search" action="./catalogo.html" method="get" class="barra-busqueda">
                 <div>
                     <label for="id_buscar" hidden>Buscar productos</label>
                     <input type="search" id="id_buscar" name="busqueda" placeholder="¿Qué estás buscando?">
@@ -47,7 +49,7 @@
         </header>
 
         <main class="contenido-principal">
-            <section class="seccion-contacto">
+            <section>
                 <h1>Contacto</h1>
                 
                 <address class="info-atencion">
@@ -60,7 +62,8 @@
 
                 <div class="contenedor-formulario">
                     <h2>Envianos tu consulta</h2>
-                    <form action="#" method="post" class="formulario-contacto">
+                    <div id="mensaje-formulario" role="alert"></div>
+                    <form id="formulario-contacto" action="#" method="post" class="formulario-contacto" novalidate>
                         <div class="campo-form">
                             <label for="id-nombre">Nombre</label>
                             <input type="text" name="nombre" id="id-nombre" required placeholder="Tu nombre">

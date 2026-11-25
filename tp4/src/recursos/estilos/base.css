@@ -1,52 +1,54 @@
-/* Estilo base para toda la página */
-*{
-    box-sizing: border-box;
-}
+/* =========================================================
+   Apex Fit - Hoja de estilos principal
+   Orden: 1) Reset y fuente  2) Selectores de tipo
+          3) Selectores de clase por sección (con contexto)
+          4) Media query para desktop
+   ========================================================= */
 
-:root {
-    --margen-lateral: 15px;
+/* ---------- 1. Reset y fuente ---------- */
+* {
+    box-sizing: border-box;
 }
 
 @font-face {
     font-family: Inter;
-    src: url(./fuentes/Inter-Regular.ttf);
+    src: url(./fuentes/Inter_18pt-Regular.ttf);
 }
 
-/* Selectores de tipo para ambas vistas */
-html, body{
+/* ---------- 2. Selectores de tipo ---------- */
+html, body {
     margin: 0;
     padding: 0;
 }
 
-html{
+html {
     font-family: Inter, sans-serif;
-    font-size: 1rem; 
+    font-size: 1rem;
 }
 
-body{
+body {
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-h1,h2,h3,h4{
+h1, h2, h3, h4 {
     color: #1E293B;
 }
 
-a{
+a {
     text-decoration: none;
     font-weight: bold;
 }
 
 table {
-    width: 100%;             
-    table-layout: fixed;     /* Obliga a que todas las columnas tengan exactamente el mismo ancho */
-    border-collapse: collapse; /* Une los bordes de las celdas para que sea una sola línea fina */
+    width: 100%;
+    table-layout: fixed;       /* Todas las columnas con el mismo ancho */
+    border-collapse: collapse; /* Une los bordes de las celdas */
     margin-bottom: 2rem;
 }
 
-/* Estilo del título de la tabla */
 caption {
     font-weight: bold;
     font-size: 1.125rem;
@@ -55,26 +57,23 @@ caption {
     margin-bottom: 0.75rem;
 }
 
-/* Bordes y espaciado para celdas y encabezados */
 th, td {
     border: 1px solid #CBD5E1;
     padding: 1rem;
     text-align: left;
 }
 
-/* Destacamos el encabezado */
 th {
-    background-color: #0182A6; 
+    background-color: #0182A6;
     color: #FFFFFF;
     font-weight: 700;
 }
 
-/* Efecto cebra: fondo alternado en las filas para facilitar la lectura */
+/* Efecto cebra y hover en las filas */
 tbody tr:nth-child(even) {
-    background-color: #F8FAFC; 
+    background-color: #F8FAFC;
 }
 
-/* Efecto hover: resalta la fila que el usuario está mirando */
 tbody tr:hover {
     background-color: #E2E8F0;
 }
@@ -95,100 +94,106 @@ select {
     font-weight: bold;
 }
 
+/* ---------- 3. Selectores de clase ---------- */
 
-/* Selectores de clase para ambas vistas */
-.boton-principal{
-    background-color: #0182A6;
-    color: #FFFFFF;
+/* Botones */
+.boton-principal,
+.boton-secundario {
+    display: inline-block;
     padding: 0.5rem 1rem;
+    border: none;
     border-radius: 0.5rem;
-    text-decoration: none;
+    font-family: inherit;
+    font-size: 1rem;
     font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.boton-secundario{
+.boton-principal {
+    background-color: #0182A6;
+    color: #FFFFFF;
+}
+
+.boton-secundario {
     background-color: #CBD5E1;
     color: #1E293B;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    font-weight: bold;
 }
 
-/* Estilo para encabezado */
-.contenido-encabezado{
+.boton-principal:disabled {
+    background-color: #94A3B8;
+    cursor: wait;
+}
+
+/* Encabezado (mobile) */
+.contenido-encabezado {
     background-color: #0182A6;
+    display: flex;
+    flex-wrap: wrap; /* Los elementos bajan de línea si no entran */
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px 0 15px;
 }
 
-.contenido-encabezado a{
+.contenido-encabezado a {
     text-decoration: none;
     color: #FFFFFF;
     font-weight: bold;
 }
 
-/* Estilo para pie de página */
-.contenido-pie-pagina{
-    background-color: #15203a;
-    padding: 1rem var(--margen-lateral);
-}
-
-.contenido-pie-pagina li{
-    list-style: none;
-}
-
-.contenido-pie-pagina h2, .contenido-pie-pagina h3, .contenido-pie-pagina p, .contenido-pie-pagina a{
-    color: #CBD5E1;
-}
-
-/* Estilos base y mobile */
-/* Estilo para encabezado */
-.contenido-encabezado{
-    display: flex;
-    flex-wrap: wrap; /* Permite que los elementos bajen a una nueva línea si no entran */
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px var(--margen-lateral) 0; /* Margen lateral compartido con el resto de la página */
-}
-
-/* Fila Superior: Hamburguesa, Logo y Acciones */
-.btn-hamburguesa{
+.contenido-encabezado .btn-hamburguesa {
     order: 1;
     color: #FFFFFF;
     font-size: 28px;
 }
 
-.logo-principal{
+.contenido-encabezado .logo-principal {
     order: 2;
-    margin: 0 auto; /* Empuja el logo al centro exacto */
+    margin: 0 auto; /* Logo al centro */
 }
 
-.logo-principal img{
-    height: 50px; 
+.logo-principal img {
+    height: 50px;
 }
 
-.iconos-derecha{
+.contenido-encabezado .iconos-derecha {
     order: 3;
     display: flex;
-    gap: 20px; 
+    gap: 20px;
 }
 
-.iconos-derecha img{
-    height: 30px; 
+.iconos-derecha a {
+    position: relative;
 }
 
-/* Segunda Fila: Barra de Búsqueda */
-.barra-busqueda {
+.iconos-derecha img {
+    height: 30px;
+}
+
+/* Contador de productos sobre el ícono del carrito */
+.iconos-derecha .contador-carrito {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    min-width: 20px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    background-color: #F59E0B;
+    color: #1E293B;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+/* Barra de búsqueda: segunda fila en mobile */
+.contenido-encabezado .barra-busqueda {
     order: 4;
-    width: calc(100% + var(--margen-lateral) + var(--margen-lateral)); /* Extiende la búsqueda hasta los bordes del viewport */
-    margin-left: calc(0px - var(--margen-lateral));
-    margin-right: calc(0px - var(--margen-lateral));
-    margin-top: 10px;
-    background-color: #FFFFFF; 
+    width: calc(100% + 30px); /* Compensa los 15px de padding del header */
+    margin: 10px -15px 0 -15px;
+    background-color: #FFFFFF;
     padding: 10px 15px;
-    border: #15203a 1px solid;
+    border: #15203A 1px solid;
 }
 
-/* Forzamos a que tanto el div interno como el input ocupen todo el ancho */
 .barra-busqueda div,
 .barra-busqueda input {
     width: 100%;
@@ -197,82 +202,133 @@ select {
 
 .barra-busqueda input {
     padding: 8px;
-    border: none; 
+    border: none;
     outline: none;
     font-family: inherit;
 }
 
-/* Menú oculto (Se activa al tocar la hamburguesa) */
-.menu-desplegable{
+/* Menú oculto (se activa al tocar la hamburguesa) */
+.contenido-encabezado .menu-desplegable {
     order: 5;
     width: 100%;
-    display: none; /* Oculto por defecto */
+    display: none;
     flex-direction: column;
     background-color: #0182A6;
-    margin: 0 calc(0px - var(--margen-lateral)); /* Expande el menú hasta los bordes */
+    margin: 0 -15px;
 }
 
-.menu-desplegable a{
+.menu-desplegable a {
     color: #FFFFFF;
     padding: 15px;
-    text-decoration: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Funcionalidad del menú interactivo */
 #menu-toggle:checked ~ .menu-desplegable {
     display: flex;
 }
 
-/* Estilo para el contenido principal en mobile */
-.contenido-principal{
-    padding: 1rem var(--margen-lateral);
+/* Contenido principal: mismo ancho y mismos márgenes en TODAS las vistas */
+.contenido-principal {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
-.grilla-productos {
+/* Pie de página */
+.contenido-pie-pagina {
+    background-color: #15203A;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+.contenido-pie-pagina li {
+    list-style: none;
+}
+
+.contenido-pie-pagina h2,
+.contenido-pie-pagina h3,
+.contenido-pie-pagina p,
+.contenido-pie-pagina a {
+    color: #CBD5E1;
+}
+
+.contenido-pie-pagina iframe {
+    width: 100%;
+    height: 200px;
+}
+
+/* Grilla y tarjetas de productos (inicio, catálogo y blog) */
+.contenido-principal .grilla-productos {
     display: grid;
-    grid-template-columns: 1fr; /* 1 sola columna que ocupa todo el ancho */
-    gap: 1.5rem; 
-    padding: 1rem 0; 
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
 }
 
-.tarjeta-producto {
+.grilla-productos .tarjeta-producto {
     background-color: #FFFFFF;
     border: 1px solid #E2E8F0;
-    border-radius: 8px; 
+    border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin: 0;
 }
 
-/* Efecto Hover: Al pasar el mouse, la tarjeta se levanta un poco y la sombra se intensifica */
-.tarjeta-producto:hover {
+.grilla-productos .tarjeta-producto:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Imagen del producto en Mobile */
 .tarjeta-producto img {
     width: 100%;
-    height: 250px; 
-    object-fit: contain; /* Garantiza que el envase no se deforme ni se corte */
+    height: 250px;
+    object-fit: contain; /* El envase no se deforma ni se corta */
     margin-bottom: 1rem;
 }
 
-.tarjeta-oferta {
+.grilla-productos .sin-resultados {
+    color: #475569;
+    font-weight: bold;
+}
+
+/* Filtros del catálogo */
+.filtros-catalogo {
     display: flex;
-    flex-direction: column; 
-    border: 1px solid #7DD3FC; 
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.filtros-catalogo fieldset {
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.filtros-catalogo legend {
+    font-weight: bold;
+    color: #1E293B;
+}
+
+.filtros-catalogo .opciones-categoria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.opciones-categoria label {
+    cursor: pointer;
+}
+
+/* Tarjetas de ofertas y detalle del producto */
+.contenido-principal .tarjeta-oferta {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #7DD3FC;
     border-radius: 8px;
     background-color: #FFFFFF;
     padding: 1.5rem;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.tarjeta-oferta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .tarjeta-oferta img {
@@ -286,15 +342,15 @@ select {
     margin-bottom: 1.5rem;
 }
 
-/* Fila del precio y descuento */
-.tarjeta-oferta .oferta-precio-fila {
+.oferta-contenido .oferta-precio-fila {
     display: flex;
-    align-items: center; 
-    gap: 1.5rem; 
+    align-items: center;
+    gap: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
-.tarjeta-oferta .oferta-precio-fila .etiqueta-descuento {
+.tarjeta-producto .etiqueta-descuento,
+.tarjeta-oferta .etiqueta-descuento {
     background-color: #DC2626;
     color: #FFFFFF;
     font-weight: bold;
@@ -302,20 +358,58 @@ select {
     border-radius: 4px;
 }
 
-.tarjeta-oferta .oferta-precio-fila .precio-final {
+.tarjeta-producto .precio-anterior,
+.tarjeta-oferta .precio-anterior {
+    color: #64748B;
+    text-decoration: line-through;
+}
+
+.oferta-precio-fila .precio-final {
     font-size: 1.5rem;
     font-weight: bold;
     color: #000000;
 }
 
-/* Estilo para el pie de página en mobile */
-.contenido-pie-pagina iframe{
-    width: 100%;
-    height: 200px;
+/* Beneficios (inicio) */
+.contenido-principal .seccion-beneficios {
+    padding: 2rem 0;
 }
 
-/* Estilos de la sección de Contacto */
-.info-atencion {
+.seccion-beneficios .lista-beneficios {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.lista-beneficios .tarjeta-beneficio {
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tarjeta-beneficio img {
+    margin-bottom: 0.5rem;
+}
+
+.tarjeta-beneficio h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: #1E293B;
+}
+
+.tarjeta-beneficio p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+/* Contacto */
+.contenido-principal .info-atencion {
     font-style: normal;
     background-color: #F8FAFC;
     border: 1px solid #E2E8F0;
@@ -330,10 +424,10 @@ select {
 
 .info-atencion a {
     color: #0182A6;
-    font-weight: bold;
 }
 
-.contenedor-formulario {
+/* Formularios (contacto, login y carrito) */
+.contenido-principal .contenedor-formulario {
     background-color: #FFFFFF;
     border: 1px solid #E2E8F0;
     padding: 1.5rem;
@@ -341,13 +435,13 @@ select {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.formulario-contacto {
+.contenedor-formulario .formulario-contacto {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.campo-form {
+.formulario-contacto .campo-form {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -359,38 +453,51 @@ select {
 }
 
 .campo-form input,
-.campo-form textarea {
+.campo-form textarea,
+.campo-form select {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #CBD5E1;
     border-radius: 6px;
     font-family: inherit;
     font-size: 1rem;
+    font-weight: normal;
     outline: none;
 }
 
 .campo-form input:focus,
-.campo-form textarea:focus {
+.campo-form textarea:focus,
+.campo-form select:focus {
     border-color: #0182A6;
     box-shadow: 0 0 0 2px rgba(1, 130, 166, 0.2);
 }
 
-.acciones-form {
+.formulario-contacto .acciones-form {
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
     margin-top: 0.5rem;
 }
 
-.acciones-form button {
-    cursor: pointer;
-    border: none;
-    font-size: 1rem;
+/* Mensajes de notificación (errores y éxito) */
+.contenido-principal .mensaje {
+    padding: 0.75rem 1rem 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
 }
 
-/* Estilos de la sección Carrito */
+.contenido-principal .mensaje--error {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+}
 
-.seccion-carrito {
+.contenido-principal .mensaje--exito {
+    background-color: #DCFCE7;
+    color: #15803D;
+}
+
+/* Carrito */
+.contenido-principal.seccion-carrito {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -400,11 +507,24 @@ select {
     margin-bottom: 0;
 }
 
-/* Información del producto */
-.producto-carrito {
+.seccion-carrito .vista-compra {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Sin esta regla, display: flex le gana al atributo hidden y la vista no se oculta */
+.seccion-carrito .vista-compra[hidden] {
+    display: none;
+}
+
+.seccion-carrito .producto-carrito {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .producto-carrito img {
@@ -417,8 +537,7 @@ select {
     margin-top: 0;
 }
 
-/* Cantidad del producto */
-.cantidad-carrito {
+.producto-carrito .cantidad-carrito {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -429,31 +548,13 @@ select {
     width: 70px;
 }
 
-/* Formulario de envío */
-.formulario-envio {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-/* Selector de provincia */
-.seccion-carrito .campo-form select {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #CBD5E1;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 1rem;
-}
-
-/* Resumen de compra */
-.detalle-resumen {
+.resumen-carrito .detalle-resumen {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
 }
 
-.total-carrito {
+.resumen-carrito .total-carrito {
     border-top: 1px solid #E2E8F0;
     padding-top: 1rem;
     margin-bottom: 1.5rem;
@@ -464,12 +565,15 @@ select {
     font-size: 1.2rem;
 }
 
-/* Espacio entre nota y botón */
-.resumen-carrito .acciones-form {
-    margin-top: 1rem;
+.seccion-carrito .confirmacion-pedido {
+    border: 2px solid #15803D;
 }
 
-/* Globo Flotante de WhatsApp */
+.confirmacion-pedido h2 {
+    color: #15803D;
+}
+
+/* Botón flotante de WhatsApp (contacto) */
 .globo-whatsapp-flotante {
     position: fixed;
     bottom: 20px;
@@ -486,12 +590,10 @@ select {
     transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Estilo para tu imagen Telefono.svg */
 .globo-whatsapp-flotante img {
     width: 30px;
     height: 30px;
-    /* Convierte el trazo negro de la imagen a blanco */
-    filter: brightness(0) invert(1); 
+    filter: brightness(0) invert(1); /* Convierte el ícono negro a blanco */
     object-fit: contain;
     margin: 0;
 }
@@ -502,76 +604,22 @@ select {
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
 }
 
-.seccion-beneficios {
-    padding: 2rem var(--margen-lateral);
-}
-
-.contenido-principal .seccion-beneficios {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.lista-beneficios {
-    list-style: none; 
-    padding: 0;     
-    margin: 0;
-    
-    display: flex;
-    flex-direction: column; 
-    gap: 1.5rem; 
-}
-
-/* Estilizamos cada <li> como si fuera una tarjeta */
-.tarjeta-beneficio {
-    border: 1px solid #CBD5E1; 
-    border-radius: 8px; 
-    padding: 1.5rem;
-    background-color: #FFFFFF;
-    
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.tarjeta-beneficio img {
-    margin-bottom: 0.5rem;
-}
-
-.tarjeta-beneficio h3 {
-    margin: 0 0 0.5rem 0; 
-    font-size: 1.1rem;
-    color: #1E293B;
-}
-
-.tarjeta-beneficio p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #475569;
-}
-
-/* Estilo para Desktop */
+/* ---------- 4. Desktop ---------- */
 @media (min-width: 768px) {
-    :root {
-        --margen-lateral: 30px;
-    }
-
-    /* Estilo para el encabezado en desktop */
+    /* Encabezado en una sola línea */
     .contenido-encabezado {
-        display: flex;
-        flex-wrap: nowrap; /* Mantiene todos los elementos en una sola línea horizontal */
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px var(--margen-lateral); 
+        flex-wrap: nowrap;
+        padding: 15px 30px;
         position: sticky;
         top: 0px;
         z-index: 1;
     }
 
-    /* Ocultamos el botón de hamburguesa en PC */
-    .btn-hamburguesa {
+    .contenido-encabezado .btn-hamburguesa {
         display: none;
     }
 
-    /* El logo deja de ser orden 2 y se ubica al principio */
-    .logo-principal {
+    .contenido-encabezado .logo-principal {
         order: 1;
         margin: 0;
     }
@@ -580,29 +628,25 @@ select {
         height: 100px;
     }
 
-    .iconos-derecha img{
-        height: 40px; 
+    .iconos-derecha img {
+        height: 40px;
     }
 
-    /* La barra de búsqueda pasa al centro (orden 2) y se estira naturalmente */
-    .barra-busqueda {
+    .contenido-encabezado .barra-busqueda {
         order: 2;
         width: auto;
-        flex: 1;                  /* Se expande para ocupar todo el centro disponible */
-        margin: 0 30px;          /* Espacio a los lados respecto al logo y los íconos */
-        border-radius: 6px;      
+        flex: 1;
+        margin: 0 30px;
+        border-radius: 6px;
         border: 1px solid #CBD5E1;
     }
 
-    /* Los íconos de usuario y carrito van a la derecha (orden 3) */
-    .iconos-derecha {
+    .contenido-encabezado .iconos-derecha {
         order: 3;
     }
 
-    /* El menú desplegable pasa a mostrarse siempre horizontal en el header */
-    .menu-desplegable {
+    .contenido-encabezado .menu-desplegable {
         display: flex;
-        position: static;
         width: auto;
         flex-direction: row;
         background-color: transparent;
@@ -613,46 +657,48 @@ select {
         border-bottom: none;
     }
 
-    /* Estilo para el main en desktop */
-    .grilla-productos {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-    }
-    
-    .tarjeta-producto img {
-        height: 400px; 
-    }
-
-    .tarjeta-oferta {
-        flex-direction: row;
-        align-items: center;
-        gap: 2rem;
+    /* Mismo espaciado lateral en todas las vistas */
+    .contenido-principal {
         padding: 2rem;
-        margin-bottom: 1rem;
     }
 
-    .oferta-imagen {
-        flex: 1;
-        margin: 0;
-    }
-
-    .oferta-contenido {
-        flex: 1.5;
-    }
-
-    /* Estilo para el pie de página en desktop */
     .contenido-pie-pagina iframe {
         width: 500px;
         height: 400px;
     }
 
-    /* Ajuste de sección de contacto en Desktop */
-    .seccion-contacto {
-        max-width: 1000px;
-        margin: 0 auto;
+    .contenido-principal .grilla-productos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
     }
 
-    .formulario-contacto {
+    .tarjeta-producto img {
+        height: 400px;
+    }
+
+    .filtros-catalogo {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .contenido-principal .tarjeta-oferta {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .tarjeta-oferta .oferta-imagen {
+        flex: 1;
+        margin: 0;
+    }
+
+    .tarjeta-oferta .oferta-contenido {
+        flex: 1.5;
+    }
+
+    .contenedor-formulario .formulario-contacto {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1.25rem;
@@ -662,8 +708,7 @@ select {
         grid-column: span 2;
     }
 
-    /* Producto del carrito en Desktop */
-    .producto-carrito {
+    .seccion-carrito .producto-carrito {
         flex-direction: row;
         align-items: center;
     }
@@ -672,18 +717,13 @@ select {
         flex: 1;
     }
 
-    .seccion-carrito {
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-
-    .lista-beneficios {
-        flex-direction: row; 
+    .seccion-beneficios .lista-beneficios {
+        flex-direction: row;
         justify-content: space-between;
-        gap: 2rem; 
+        gap: 2rem;
     }
 
-    .tarjeta-beneficio {
-        flex: 1; 
+    .lista-beneficios .tarjeta-beneficio {
+        flex: 1;
     }
 }

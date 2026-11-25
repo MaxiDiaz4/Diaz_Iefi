@@ -1,0 +1,41 @@
+# Workflow de CI/CD de Apex Fit
+# CI: en cada push o pull request a main se ejecutan los tests unitarios (node --test).
+# CD: si los tests pasan y es un push a main, se despliega en Vercel (producción).
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tp4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+
+  deploy:
+    needs: test # solo corre si el job "test" terminó bien
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    env:
+      T: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --global vercel
+      - run: vercel pull --yes --environment=production --token=$T
+      - run: vercel build --prod --token=$T
+      - run: vercel deploy --prebuilt --prod --token=$T

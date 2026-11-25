@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Apex Fit - Carrito de compras</title>
+        <link rel="stylesheet" href="./recursos/estilos/base.css">
+        <script type="module" src="./recursos/js/index.js"></script>
+    </head>
+
+    <body>
+        <header class="contenido-encabezado">
+            <!-- 1. Botón Hamburguesa (Checkbox Hack) -->
+            <input type="checkbox" id="menu-toggle" hidden>
+            <label for="menu-toggle" class="btn-hamburguesa" aria-label="Abrir menú">☰</label>
+
+            <!-- 2. Logo Central -->
+            <a href="./index.html" class="logo-principal" aria-label="Volver a la página principal">
+                <img src="./recursos/imagenes/logos/imagotipo_blanco.webp" alt="Logo de Apex Fit"> 
+            </a>
+
+            <!-- 3. Contenedor para agrupar Usuario y Carrito a la derecha -->
+            <div class="iconos-derecha">
+                <a href="./login.html" aria-label="Ir al perfil de usuario">
+                    <img src="./recursos/imagenes/elementos/logo_usuario_blanco.webp" alt="Logo de usuario">
+                </a>
+                <a href="./carrito.html" aria-label="Ir al carrito de compras">
+                    <img src="./recursos/imagenes/elementos/logo_carrito_blanco.webp" alt="Logo de carrito">
+                    <span id="contador-carrito" class="contador-carrito" hidden>0</span>
+                </a>
+            </div>
+
+            <!-- 4. Buscador (Pasará a la segunda línea) -->
+            <form role="search" action="./catalogo.html" method="get" class="barra-busqueda">
+                <div>
+                    <label for="id_buscar" hidden>Buscar productos</label>
+                    <input type="search" id="id_buscar" name="busqueda" placeholder="¿Qué estás buscando?">
+                </div>
+            </form>
+
+            <!-- 5. Menú de navegación (Oculto por defecto) -->
+            <nav class="menu-desplegable">
+                <a href="./index.html">Inicio</a>
+                <a href="./catalogo.html" aria-label="Ir al catálogo">Catálogo</a>
+                <a href="./blog.html" aria-label="Ir al blog">Blog</a>
+                <a href="./ofertas.html" aria-label="Ir a las ofertas">Ofertas</a>
+                <a href="./contacto.html" aria-label="Ir al contacto">Contacto</a>
+            </nav>
+        </header>
+
+        <main class="contenido-principal seccion-carrito">
+            <h1>Carrito de compras</h1>
+
+            <!-- Vista de confirmación: se muestra al finalizar la compra -->
+            <div id="vista-confirmacion" hidden></div>
+
+            <!-- Vista de compra: productos, datos de envío y resumen -->
+            <div id="vista-compra" class="vista-compra">
+                <section class="contenedor-formulario">
+                    <h2>Productos en el carrito</h2>
+                    <div id="contenedor-carrito" aria-live="polite">
+                        <p>Cargando carrito...</p>
+                    </div>
+                </section>
+
+                <section class="contenedor-formulario">
+                    <h2>Datos de envío</h2>
+                    <div id="mensaje-pedido" role="alert"></div>
+                    <form id="formulario-pedido" class="formulario-contacto">
+                        <div class="campo-form">
+                            <label for="id-nombre">Nombre</label>
+                            <input type="text" id="id-nombre" name="nombre" minlength="2" required placeholder="Tu nombre">
+                        </div>
+                        <div class="campo-form">
+                            <label for="id-apellido">Apellido</label>
+                            <input type="text" id="id-apellido" name="apellido" minlength="2" required placeholder="Tu apellido">
+                        </div>
+                        <div class="campo-form">
+                            <label for="id-email">Email</label>
+                            <input type="email" id="id-email" name="email" required placeholder="ejemplo@correo.com">
+                        </div>
+                        <div class="campo-form">
+                            <label for="id-telefono">Teléfono</label>
+                            <input type="tel" id="id-telefono" name="telefono" pattern="\+?[0-9 ]{8,15}" required placeholder="351XXXXXXX">
+                        </div>
+                        <div class="campo-form">
+                            <label for="id-provincia">Provincia</label>
+                            <select id="id-provincia" name="provincia" required>
+                                <option value="" selected>Seleccioná tu provincia</option>
+                                <option value="buenos-aires">Buenos Aires</option>
+                                <option value="caba">Ciudad Autónoma de Buenos Aires</option>
+                                <option value="catamarca">Catamarca</option>
+                                <option value="chaco">Chaco</option>
+                                <option value="chubut">Chubut</option>
+                                <option value="cordoba">Córdoba</option>
+                                <option value="corrientes">Corrientes</option>
+                                <option value="entre-rios">Entre Ríos</option>
+                                <option value="formosa">Formosa</option>
+                                <option value="jujuy">Jujuy</option>
+                                <option value="la-pampa">La Pampa</option>
+                                <option value="la-rioja">La Rioja</option>
+                                <option value="mendoza">Mendoza</option>
+                                <option value="misiones">Misiones</option>
+                                <option value="neuquen">Neuquén</option>
+                                <option value="rio-negro">Río Negro</option>
+                                <option value="salta">Salta</option>
+                                <option value="san-juan">San Juan</option>
+                                <option value="san-luis">San Luis</option>
+                                <option value="santa-cruz">Santa Cruz</option>
+                                <option value="santa-fe">Santa Fe</option>
+                                <option value="santiago-del-estero">Santiago del Estero</option>
+                                <option value="tierra-del-fuego">Tierra del Fuego</option>
+                                <option value="tucuman">Tucumán</option>
+                            </select>
+                        </div>
+                        <div class="campo-form">
+                            <label for="id-codigo-postal">Código postal</label>
+                            <input type="text" id="id-codigo-postal" name="codigo-postal" pattern="[0-9]{4}" maxlength="4" required placeholder="5000">
+                        </div>
+                        <div class="campo-form campo-completo">
+                            <label for="id-direccion">Dirección de entrega</label>
+                            <input type="text" id="id-direccion" name="direccion" minlength="5" required placeholder="Calle, número, piso/depto">
+                        </div>
+                        <div class="campo-form campo-completo">
+                            <label for="id-nota">Nota del pedido (opcional)</label>
+                            <textarea name="nota" id="id-nota" rows="3" maxlength="200"></textarea>
+                        </div>
+                        <div class="acciones-form campo-completo">
+                            <button type="reset" class="boton-secundario">Limpiar</button>
+                            <button type="submit" id="boton-finalizar" class="boton-principal">Finalizar compra</button>
+                        </div>
+                    </form>
+                </section>
+
+                <aside class="contenedor-formulario resumen-carrito">
+                    <h2>Resumen de compra</h2>
+                    <div class="detalle-resumen">
+                        <p>Subtotal:</p>
+                        <p><strong id="resumen-subtotal">$0</strong></p>
+                    </div>
+                    <div class="detalle-resumen">
+                        <p>Envío:</p>
+                        <p><strong id="resumen-envio">A calcular</strong></p>
+                    </div>
+                    <div class="detalle-resumen total-carrito">
+                        <p><strong>Total:</strong></p>
+                        <p><strong id="resumen-total">$0</strong></p>
+                    </div>
+                    <p><small>Envío gratis en compras desde $50.000. Córdoba $3.500, resto del país $7.500.</small></p>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="contenido-pie-pagina">
+            <h2>Apex Fitness</h2>
+            <p>Tu tienda de confianza en suplementación deportiva y rendimiento físico.</p>
+    
+            <div>
+                <h3>Navegación</h3>
+                <ul>
+                    <li>
+                        <a href="./index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="./catalogo.html">Catálogo de Productos</a>
+                    </li>
+                    <li>
+                        <a href="./ofertas.html">Ofertas Especiales</a>
+                    </li>
+                    <li>
+                        <a href="./blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="./contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Contacto</h3>
+                <address>
+                    <p>Email: <a href="mailto:contacto@apexfitness.com">contacto@apexfitness.com</a></p>
+                    <p>Teléfono: <a href="tel:+543511234567">+54 (351) 123-4567</a></p>
+                    <p>Ubicación: Córdoba, Argentina</p>
+                </address>
+
+                <h3>Síguenos</h3>
+                <ul>
+                    <li><a href="https://instagram.com/@ApexFitness" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://facebook.com/@ApexFitness" target="_blank" rel="noopener">Facebook</a></li>
+                    <li><a href="https://tiktok.com/@ApexFitness" target="_blank" rel="noopener">TikTok</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p><small>&copy; 2026 Apex Fitness. Todos los derechos reservados. Proyecto académico - Aplicaciones Web I.</small></p>
+            </div>
+        </footer>
+    </body>
+</html>

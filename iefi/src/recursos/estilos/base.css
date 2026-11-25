@@ -1,0 +1,729 @@
+/* =========================================================
+   Apex Fit - Hoja de estilos principal
+   Orden: 1) Reset y fuente  2) Selectores de tipo
+          3) Selectores de clase por sección (con contexto)
+          4) Media query para desktop
+   ========================================================= */
+
+/* ---------- 1. Reset y fuente ---------- */
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url(./fuentes/Inter_18pt-Regular.ttf);
+}
+
+/* ---------- 2. Selectores de tipo ---------- */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: Inter, sans-serif;
+    font-size: 1rem;
+}
+
+body {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+    color: #1E293B;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;       /* Todas las columnas con el mismo ancho */
+    border-collapse: collapse; /* Une los bordes de las celdas */
+    margin-bottom: 2rem;
+}
+
+caption {
+    font-weight: bold;
+    font-size: 1.125rem;
+    color: #1E293B;
+    text-align: left;
+    margin-bottom: 0.75rem;
+}
+
+th, td {
+    border: 1px solid #CBD5E1;
+    padding: 1rem;
+    text-align: left;
+}
+
+th {
+    background-color: #0182A6;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+/* Efecto cebra y hover en las filas */
+tbody tr:nth-child(even) {
+    background-color: #F8FAFC;
+}
+
+tbody tr:hover {
+    background-color: #E2E8F0;
+}
+
+input[type="number"] {
+    width: 60px;
+    padding: 0.25rem;
+    border: 2px solid #0182A6;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+select {
+    padding: 0.25rem;
+    border: 2px solid #0182A6;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* ---------- 3. Selectores de clase ---------- */
+
+/* Botones */
+.boton-principal,
+.boton-secundario {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.boton-principal {
+    background-color: #0182A6;
+    color: #FFFFFF;
+}
+
+.boton-secundario {
+    background-color: #CBD5E1;
+    color: #1E293B;
+}
+
+.boton-principal:disabled {
+    background-color: #94A3B8;
+    cursor: wait;
+}
+
+/* Encabezado (mobile) */
+.contenido-encabezado {
+    background-color: #0182A6;
+    display: flex;
+    flex-wrap: wrap; /* Los elementos bajan de línea si no entran */
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px 0 15px;
+}
+
+.contenido-encabezado a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.contenido-encabezado .btn-hamburguesa {
+    order: 1;
+    color: #FFFFFF;
+    font-size: 28px;
+}
+
+.contenido-encabezado .logo-principal {
+    order: 2;
+    margin: 0 auto; /* Logo al centro */
+}
+
+.logo-principal img {
+    height: 50px;
+}
+
+.contenido-encabezado .iconos-derecha {
+    order: 3;
+    display: flex;
+    gap: 20px;
+}
+
+.iconos-derecha a {
+    position: relative;
+}
+
+.iconos-derecha img {
+    height: 30px;
+}
+
+/* Contador de productos sobre el ícono del carrito */
+.iconos-derecha .contador-carrito {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    min-width: 20px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    background-color: #F59E0B;
+    color: #1E293B;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+/* Barra de búsqueda: segunda fila en mobile */
+.contenido-encabezado .barra-busqueda {
+    order: 4;
+    width: calc(100% + 30px); /* Compensa los 15px de padding del header */
+    margin: 10px -15px 0 -15px;
+    background-color: #FFFFFF;
+    padding: 10px 15px;
+    border: #15203A 1px solid;
+}
+
+.barra-busqueda div,
+.barra-busqueda input {
+    width: 100%;
+    display: block;
+}
+
+.barra-busqueda input {
+    padding: 8px;
+    border: none;
+    outline: none;
+    font-family: inherit;
+}
+
+/* Menú oculto (se activa al tocar la hamburguesa) */
+.contenido-encabezado .menu-desplegable {
+    order: 5;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    background-color: #0182A6;
+    margin: 0 -15px;
+}
+
+.menu-desplegable a {
+    color: #FFFFFF;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#menu-toggle:checked ~ .menu-desplegable {
+    display: flex;
+}
+
+/* Contenido principal: mismo ancho y mismos márgenes en TODAS las vistas */
+.contenido-principal {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Pie de página */
+.contenido-pie-pagina {
+    background-color: #15203A;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+.contenido-pie-pagina li {
+    list-style: none;
+}
+
+.contenido-pie-pagina h2,
+.contenido-pie-pagina h3,
+.contenido-pie-pagina p,
+.contenido-pie-pagina a {
+    color: #CBD5E1;
+}
+
+.contenido-pie-pagina iframe {
+    width: 100%;
+    height: 200px;
+}
+
+/* Grilla y tarjetas de productos (inicio, catálogo y blog) */
+.contenido-principal .grilla-productos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.grilla-productos .tarjeta-producto {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.grilla-productos .tarjeta-producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-producto img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain; /* El envase no se deforma ni se corta */
+    margin-bottom: 1rem;
+}
+
+.grilla-productos .sin-resultados {
+    color: #475569;
+    font-weight: bold;
+}
+
+/* Filtros del catálogo */
+.filtros-catalogo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.filtros-catalogo fieldset {
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.filtros-catalogo legend {
+    font-weight: bold;
+    color: #1E293B;
+}
+
+.filtros-catalogo .opciones-categoria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.opciones-categoria label {
+    cursor: pointer;
+}
+
+/* Tarjetas de ofertas y detalle del producto */
+.contenido-principal .tarjeta-oferta {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #7DD3FC;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-oferta img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}
+
+.tarjeta-oferta .oferta-contenido h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.oferta-contenido .oferta-precio-fila {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tarjeta-producto .etiqueta-descuento,
+.tarjeta-oferta .etiqueta-descuento {
+    background-color: #DC2626;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+}
+
+.tarjeta-producto .precio-anterior,
+.tarjeta-oferta .precio-anterior {
+    color: #64748B;
+    text-decoration: line-through;
+}
+
+.oferta-precio-fila .precio-final {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+/* Beneficios (inicio) */
+.contenido-principal .seccion-beneficios {
+    padding: 2rem 0;
+}
+
+.seccion-beneficios .lista-beneficios {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.lista-beneficios .tarjeta-beneficio {
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tarjeta-beneficio img {
+    margin-bottom: 0.5rem;
+}
+
+.tarjeta-beneficio h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: #1E293B;
+}
+
+.tarjeta-beneficio p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+/* Contacto */
+.contenido-principal .info-atencion {
+    font-style: normal;
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.info-atencion h2 {
+    margin-top: 0;
+}
+
+.info-atencion a {
+    color: #0182A6;
+}
+
+/* Formularios (contacto, login y carrito) */
+.contenido-principal .contenedor-formulario {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.contenedor-formulario .formulario-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.formulario-contacto .campo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.campo-form label {
+    font-weight: bold;
+    color: #1E293B;
+}
+
+.campo-form input,
+.campo-form textarea,
+.campo-form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: normal;
+    outline: none;
+}
+
+.campo-form input:focus,
+.campo-form textarea:focus,
+.campo-form select:focus {
+    border-color: #0182A6;
+    box-shadow: 0 0 0 2px rgba(1, 130, 166, 0.2);
+}
+
+.formulario-contacto .acciones-form {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+
+/* Mensajes de notificación (errores y éxito) */
+.contenido-principal .mensaje {
+    padding: 0.75rem 1rem 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+}
+
+.contenido-principal .mensaje--error {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+}
+
+.contenido-principal .mensaje--exito {
+    background-color: #DCFCE7;
+    color: #15803D;
+}
+
+/* Carrito */
+.contenido-principal.seccion-carrito {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.seccion-carrito h1 {
+    margin-bottom: 0;
+}
+
+.seccion-carrito .vista-compra {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Sin esta regla, display: flex le gana al atributo hidden y la vista no se oculta */
+.seccion-carrito .vista-compra[hidden] {
+    display: none;
+}
+
+.seccion-carrito .producto-carrito {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.producto-carrito img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.producto-carrito h3 {
+    margin-top: 0;
+}
+
+.producto-carrito .cantidad-carrito {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.cantidad-carrito input {
+    width: 70px;
+}
+
+.resumen-carrito .detalle-resumen {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.resumen-carrito .total-carrito {
+    border-top: 1px solid #E2E8F0;
+    padding-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.total-carrito strong {
+    color: #1E293B;
+    font-size: 1.2rem;
+}
+
+.seccion-carrito .confirmacion-pedido {
+    border: 2px solid #15803D;
+}
+
+.confirmacion-pedido h2 {
+    color: #15803D;
+}
+
+/* Botón flotante de WhatsApp (contacto) */
+.globo-whatsapp-flotante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 56px;
+    background-color: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.globo-whatsapp-flotante img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1); /* Convierte el ícono negro a blanco */
+    object-fit: contain;
+    margin: 0;
+}
+
+.globo-whatsapp-flotante:hover {
+    background-color: #1EBE5D;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- 4. Desktop ---------- */
+@media (min-width: 768px) {
+    /* Encabezado en una sola línea */
+    .contenido-encabezado {
+        flex-wrap: nowrap;
+        padding: 15px 30px;
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+    }
+
+    .contenido-encabezado .btn-hamburguesa {
+        display: none;
+    }
+
+    .contenido-encabezado .logo-principal {
+        order: 1;
+        margin: 0;
+    }
+
+    .logo-principal img {
+        height: 100px;
+    }
+
+    .iconos-derecha img {
+        height: 40px;
+    }
+
+    .contenido-encabezado .barra-busqueda {
+        order: 2;
+        width: auto;
+        flex: 1;
+        margin: 0 30px;
+        border-radius: 6px;
+        border: 1px solid #CBD5E1;
+    }
+
+    .contenido-encabezado .iconos-derecha {
+        order: 3;
+    }
+
+    .contenido-encabezado .menu-desplegable {
+        display: flex;
+        width: auto;
+        flex-direction: row;
+        background-color: transparent;
+        margin: 0;
+    }
+
+    .menu-desplegable a {
+        border-bottom: none;
+    }
+
+    /* Mismo espaciado lateral en todas las vistas */
+    .contenido-principal {
+        padding: 2rem;
+    }
+
+    .contenido-pie-pagina iframe {
+        width: 500px;
+        height: 400px;
+    }
+
+    .contenido-principal .grilla-productos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .tarjeta-producto img {
+        height: 400px;
+    }
+
+    .filtros-catalogo {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    .contenido-principal .tarjeta-oferta {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .tarjeta-oferta .oferta-imagen {
+        flex: 1;
+        margin: 0;
+    }
+
+    .tarjeta-oferta .oferta-contenido {
+        flex: 1.5;
+    }
+
+    .contenedor-formulario .formulario-contacto {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    .formulario-contacto .campo-completo {
+        grid-column: span 2;
+    }
+
+    .seccion-carrito .producto-carrito {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .producto-carrito .info-producto-carrito {
+        flex: 1;
+    }
+
+    .seccion-beneficios .lista-beneficios {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .lista-beneficios .tarjeta-beneficio {
+        flex: 1;
+    }
+}

@@ -26,11 +26,12 @@
                 </a>
                 <a href="./carrito.html" aria-label="Ir al carrito de compras">
                     <img src="./recursos/imagenes/elementos/logo_carrito_blanco.webp" alt="Logo de carrito">
+                    <span id="contador-carrito" class="contador-carrito" hidden>0</span>
                 </a>
             </div>
 
             <!-- 4. Buscador (Pasará a la segunda línea) -->
-            <form role="search" action="#" method="get" class="barra-busqueda">
+            <form role="search" action="./catalogo.html" method="get" class="barra-busqueda">
                 <div>
                     <label for="id_buscar" hidden>Buscar productos</label>
                     <input type="search" id="id_buscar" name="busqueda" placeholder="¿Qué estás buscando?">
@@ -49,72 +50,30 @@
 
         <main class="contenido-principal">
             <h1>Catálogo de Productos</h1>
-            <h2>Categorías</h2>
-                <ul class="lista-categorias">
-                    <li><a href="#">Todas</a></li>
-                    <li><a href="#">Proteínas</a></li>
-                    <li><a href="#">Creatinas</a></li>
-                    <li><a href="#">Otros</a></li>
-                </ul>
-            <section>
-                <label for="id-ordenar">Ordenar por:</label>
-                <select id="id-ordenar" name="ordenar">
-                    <option value="relevancia">Relevancia</option>
-                    <option value="precio-bajo">Menor precio</option>
-                    <option value="precio-alto">Mayor precio</option>
-                    <option value="nombre">Nombre (A-Z)</option>
-                </select>
-            </section>
+            <form id="formulario-filtros" class="filtros-catalogo" aria-label="Filtros del catálogo">
+                <fieldset>
+                    <legend>Categorías</legend>
+                    <div class="opciones-categoria">
+                        <label><input type="radio" name="categoria" value="Todas" checked> Todas</label>
+                        <label><input type="radio" name="categoria" value="Proteínas"> Proteínas</label>
+                        <label><input type="radio" name="categoria" value="Creatinas"> Creatinas</label>
+                        <label><input type="radio" name="categoria" value="Otros"> Otros</label>
+                    </div>
+                </fieldset>
+                <div>
+                    <label for="id-ordenar">Ordenar por:</label>
+                    <select id="id-ordenar" name="ordenar">
+                        <option value="relevancia">Relevancia</option>
+                        <option value="precio-bajo">Menor precio</option>
+                        <option value="precio-alto">Mayor precio</option>
+                        <option value="nombre">Nombre (A-Z)</option>
+                    </select>
+                </div>
+            </form>
+            <p>Usá el buscador de arriba para filtrar por nombre, marca o sabor.</p>
             <h2>Nuestros Productos</h2>
-            <section id = "contenedor-productos" class="grilla-productos">
-                <!-- <article class="tarjeta-producto">
-                    <figure>
-                        <a href="./detalle_producto.html">
-                            <img src="recursos/imagenes/productos/suplementos/whey_protein_ena.webp" alt="Whey Protein Concentrada 1kg">
-                        </a>
-                    </figure>
-                    <h3>Whey Protein Concentrada 1kg</h3>
-                    <p>WHEY PROTEIN 1KG: Proteina en polvo marca Ena, sabor a chocolate
-                    </p>
-                    <p><strong>$49.999</strong></p>
-                    <a href="./detalle_producto.html" class="boton-principal">Ver detalle</a>
-                </article>
-
-                <article class="tarjeta-producto">
-                    <figure>
-                        <a href="./detalle_producto.html">
-                            <img src="recursos/imagenes/productos/suplementos/proteina_creatina.webp" alt="Creatina Monohidratada 300g">
-                        </a>
-                    </figure>
-                    <h3>Creatina & Whey Protein 1kg - Star Nutrition 300g</h3>
-                    <p>Mejora la fuerza, potencia y rendimiento en entrenamientos intensos.</p>
-                    <p><strong>$99.999</strong></p>
-                    <a href="./detalle_producto.html" class="boton-principal">Ver detalle</a>
-                </article>
-
-                <article class="tarjeta-producto">
-                    <figure>
-                        <a href="./detalle_producto.html">
-                            <img src="recursos/imagenes/productos/suplementos/colageno_ena.webp" alt="Colageno 390g">
-                        </a>
-                    </figure>
-                    <h3>Colageno 400g</h3>
-                    <p>Fórmula avanzada con beta-alanina y cafeína para máximo enfoque.</p>
-                    <p><strong>$29.999</strong></p>
-                    <a href="./detalle_producto.html" class="boton-principal">Ver detalle</a>
-                </article>
-
-                <article class="tarjeta-producto">
-                    <figure>
-                        <a href="./detalle_producto.html">
-                            <img src="recursos/imagenes/productos/suplementos/creatina.webp" alt="Creactina & Whey Protein 250g">
-                        </a>
-                    </figure>
-                    <h3>Creatina Monohidratada 300g</h3>
-                    <p>Aminoácidos de cadena ramificada para evitar el catabolismo.</p>
-                    <p><strong>$49.999</strong></p>
-                    <a href="./detalle_producto.html" class="boton-principal">Ver detalle</a>
-                </article> -->
+            <section id="contenedor-productos" class="grilla-productos" aria-live="polite">
+                <p>Cargando productos...</p>
             </section>
         </main>
 
